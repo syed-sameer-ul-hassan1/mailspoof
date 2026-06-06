@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src *; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/phone.css">
+<link rel="stylesheet" href="../style/tablet.css">
+<title>MailSpoof - Documentation</title>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="home.html" class="nav-brand"><img src="../assets/logo.svg" alt="MailSpoof"></a>
+    <button type="button" class="menu-btn" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="nav-links">
+      <a href="features.html">Features</a>
+      <a href="templates.html">Templates</a>
+      <a href="docs.html">Docs</a>
+      <a href="download.html">Download</a>
+      <a href="../bug/report/bugreport.html">Report Bug</a>
+      <a href="support.html">Support</a>
+      <a href="donate.html" class="nav-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Donate</a>
+    </div>
+  </div>
+</nav>
+<style>
+.docs-layout { display:flex; gap:48px; align-items:flex-start; }
+.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; }
+.docs-content { flex:1; min-width:0; }
+.docs-nav a { display:block; padding:8px 0; color:var(--text-dim); font-size:14px; border-left:2px solid transparent; padding-left:14px; margin-left:-14px; transition:all 0.2s; }
+.docs-nav a:hover, .docs-nav a.active { color:var(--accent); border-left-color:var(--accent); }
+.docs-nav h5 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--text-fade); margin:24px 0 10px; }
+.docs-content h3 { font-size:28px; font-weight:700; margin:48px 0 20px; padding-top:24px; border-top:1px solid var(--border); }
+.docs-content h3:first-child { margin-top:0; padding-top:0; border-top:none; }
+.docs-content p { color:var(--text-dim); margin-bottom:16px; }
+.docs-content ul { margin-bottom:20px; padding-left:20px; color:var(--text-dim); }
+.docs-content li { margin-bottom:8px; }
+.code-header { display:flex; align-items:center; justify-content:space-between; }
+.copy-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:var(--text-dim); font-size:11px; padding:3px 10px; border-radius:6px; cursor:pointer; transition:all 0.2s; font-family:var(--font-sans); }
+.copy-btn:hover { background:rgba(160,31,31,0.25); color:#fff; border-color:rgba(160,31,31,0.4); }
+.copy-btn.copied { background:rgba(34,197,94,0.15); color:var(--green); border-color:rgba(34,197,94,0.3); }
+@media(max-width:767px){ .docs-layout { flex-direction:column; } .docs-nav { display:none; } }
+</style>
+
+<section class="hero" style="padding:140px 0 60px;">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <h1 class="fade-up">Documentation</h1>
+    <p class="fade-up" style="max-width:640px;">Learn how to install, configure, and use MailSpoof.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="docs-layout">
+      <aside class="docs-nav">
+        <h5>Getting Started</h5>
+        <a href="#install">Installation</a>
+        <a href="#quickstart">Quick Start</a>
+        <h5>Usage</h5>
+        <a href="#commands">Commands</a>
+        <a href="#server">SMTP Server</a>
+        <a href="#templates">Templates</a>
+        <a href="#custom">Custom Tests</a>
+        <h5>Advanced</h5>
+        <a href="#verbose">Verbose Diagnostics</a>
+        <a href="#relay">SMTP Relay</a>
+        <a href="#profiles">SMTP Profiles</a>
+        <a href="#preview">Preview & Filter</a>
+        <a href="#logs">Audit Logs</a>
+        <a href="#reporting">Reporting</a>
+        <a href="#update">Update</a>
+        <a href="#uninstall">Uninstall</a>
+      </aside>
+      <div class="docs-content">
+        <h3 id="install">Installation</h3>
+        <p>MailSpoof supports Linux, macOS, and Termux. Clone the repo and run the installer:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">git</span> <span class="v">clone</span> <span class="s">https://github.com/syed-sameer-ul-hassan/MailSpoof.git</span><br>$ <span class="k">cd</span> <span class="s">MailSpoof</span> <span class="c">&&</span> <span class="k">bash</span> <span class="s">install.sh</span></div></div>
+        <p>Or install directly without cloning:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">curl</span> <span class="v">-fsSL</span> <span class="s">https://raw.githubusercontent.com/syed-sameer-ul-hassan/MailSpoof/main/install.sh</span> <span class="c">|</span> <span class="k">bash</span></div></div>
+        <p>The installer auto-detects your distribution and installs Python, venv, and pip if needed.</p>
+
+        <h3 id="quickstart">Quick Start</h3>
+        <p>Run without arguments to start the interactive session:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span><br><span class="c"># Starts SMTP server + interactive spoofing wizard</span></div></div>
+
+        <h3 id="commands">Commands</h3>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">server</span>     <span class="c"># Start SMTP server only</span><br>$ <span class="k">mailspoof</span> <span class="v">start</span>      <span class="c"># Start server + interactive session</span><br>$ <span class="k">mailspoof</span> <span class="v">list</span>       <span class="c"># List all templates</span><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span>  <span class="c"># Run scenario by ID</span><br>$ <span class="k">mailspoof</span> <span class="v">custom</span>     <span class="c"># Fully custom spoofing test</span><br>$ <span class="k">mailspoof</span> <span class="v">create</span>     <span class="c"># Create custom template</span><br>$ <span class="k">mailspoof</span> <span class="v">-t</span>         <span class="c"># Alias for create</span><br>$ <span class="k">mailspoof</span> <span class="v">preview</span> <span class="v">1</span>   <span class="c"># Preview a template by ID</span><br>$ <span class="k">mailspoof</span> <span class="v">remove-template</span> <span class="v">1</span> <span class="c"># Remove a custom template</span><br>$ <span class="k">mailspoof</span> <span class="v">edit-template</span> <span class="v">1</span>   <span class="c"># Edit a template in nano</span><br>$ <span class="k">mailspoof</span> <span class="v">profile</span> <span class="v">list</span>   <span class="c"># List saved SMTP profiles</span><br>$ <span class="k">mailspoof</span> <span class="v">logs</span>       <span class="c"># View audit logs</span><br>$ <span class="k">mailspoof</span> <span class="v">report</span>     <span class="c"># Generate assessment report</span><br>$ <span class="k">mailspoof</span> <span class="v">update</span>     <span class="c"># Update from Git repository</span><br>$ <span class="k">mailspoof</span> <span class="v">uninstall</span>  <span class="c"># Remove MailSpoof</span><br>$ <span class="k">mailspoof</span> <span class="v">help</span>       <span class="c"># Show help banner</span></div></div>
+
+        <p><strong>Additional flags:</strong> <code>mailspoof help</code> shows the help page, <code>mailspoof -v</code> prints the version.</p>
+
+        <h3 id="server">SMTP Server</h3>
+        <p>The built-in SMTP server implements a minimal state machine and relays by resolving MX records.</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">server</span> <span class="v">--host</span> <span class="s">0.0.0.0</span> <span class="v">--port</span> <span class="v">2525</span><br>$ <span class="k">mailspoof</span> <span class="v">start</span> <span class="v">--server-only</span>  <span class="c"># Server without interactive mode</span></div></div>
+
+        <h3 id="templates">Templates</h3>
+        <p>Custom templates use a simple key-value header format saved to <code>~/.mailspoof/templates/custom/</code>. Use raw HTML in the body for rich rendering; MailSpoof automatically generates a plain-text fallback and appends a test disclaimer to both parts. The <code>{TODAY}</code> placeholder is automatically replaced with the current date in built-in templates.</p>
+        <div class="code-block"><div class="code-header">template.txt</div><div class="code-body">Name: My Custom Template<br>Category: Social Engineering<br>Severity: High<br>From Email: security@company.com<br>From Name: Security Team<br>Subject: Action Required<br>Tags: urgent, billing<br>Body:<br>&lt;html&gt;&lt;body&gt;&lt;h1&gt;Action Required&lt;/h1&gt;...&lt;/body&gt;&lt;/html&gt;<br>Description: Custom test scenario.</div></div>
+        <p>Create interactively (type <code>EOF</code> on a new line to finish the body):</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">create</span></div></div>
+        <p>Filter templates when listing:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">list</span> <span class="v">--filter</span> <span class="s">billing</span></div></div>
+
+        <h3 id="custom">Custom Tests</h3>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">custom</span> \<br>  <span class="v">--from-email</span> <span class="s">"ceo@company.com"</span> \<br>  <span class="v">--from-name</span> <span class="s">"CEO"</span> \<br>  <span class="v">--subject</span> <span class="s">"Urgent"</span> \<br>  <span class="v">--body</span> <span class="s">"Please review"</span> \<br>  <span class="v">--target</span> <span class="s">"user@company.com"</span> \<br>  <span class="v">--profile</span> <span class="s">gmail</span> \<br>  <span class="v">--verbose</span></div></div>
+
+        <h3 id="verbose">Verbose Diagnostics</h3>
+        <p>Trace every stage of SMTP communication with the <code>--verbose</code> flag. MailSpoof prints connection details, STARTTLS status, authentication steps, and provides actionable error explanations for blacklists, SPF/DKIM/DMARC rejections, and relay failures.</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span> <span class="v">--verbose</span></div></div>
+
+        <h3 id="relay">SMTP Relay</h3>
+        <p>Direct MX delivery from residential IPs is blocked by most providers. Use an external relay inline or save a profile:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span> \<br>  <span class="v">--smtp-host</span> <span class="s">smtp.gmail.com</span> \<br>  <span class="v">--smtp-port</span> <span class="v">587</span> \<br>  <span class="v">--smtp-user</span> <span class="s">your-email@gmail.com</span> \<br>  <span class="v">--smtp-pass</span> <span class="s">your-app-password</span> \<br>  <span class="v">--use-tls</span> \<br>  <span class="v">--verbose</span></div></div>
+
+        <h3 id="profiles">SMTP Profiles</h3>
+        <p>Save relay credentials once and reuse them with <code>--profile</code>:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">profile</span> <span class="v">add</span> <span class="s">gmail</span> \<br>  <span class="v">--host</span> <span class="s">smtp.gmail.com</span> \<br>  <span class="v">--port</span> <span class="v">587</span> \<br>  <span class="v">--user</span> <span class="s">you@gmail.com</span> \<br>  <span class="v">--pass</span> <span class="s">app-password</span> \<br>  <span class="v">--use-tls</span><br><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span> <span class="v">--profile</span> <span class="s">gmail</span> <span class="v">--verbose</span><br>$ <span class="k">mailspoof</span> <span class="v">profile</span> <span class="v">list</span><br>$ <span class="k">mailspoof</span> <span class="v">profile</span> <span class="v">remove</span> <span class="s">gmail</span></div></div>
+
+        <h3 id="preview">Preview & Template Management</h3>
+        <p>Inspect templates before sending and manage them from the CLI:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">preview</span> <span class="v">1</span>            <span class="c"># Preview rendered body</span><br>$ <span class="k">mailspoof</span> <span class="v">preview</span> <span class="v">1</span> <span class="v">--raw</span>      <span class="c"># Show raw HTML</span><br>$ <span class="k">mailspoof</span> <span class="v">edit-template</span> <span class="v">1</span>     <span class="c"># Open in $EDITOR or nano</span><br>$ <span class="k">mailspoof</span> <span class="v">remove-template</span> <span class="v">1</span>  <span class="c"># Delete custom template</span><br>$ <span class="k">mailspoof</span> <span class="v">list</span> <span class="v">--filter</span> <span class="s">ceo</span>  <span class="c"># Filter by keyword/tag</span></div></div>
+
+        <h3 id="logs">Audit Logs</h3>
+        <p>View recent test activity from the structured JSON audit log:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">logs</span>           <span class="c"># Last 20 entries</span><br>$ <span class="k">mailspoof</span> <span class="v">logs</span> <span class="v">--lines</span> <span class="v">50</span>  <span class="c"># Last 50 entries</span></div></div>
+
+        <h3 id="reporting">Reporting</h3>
+        <p>All tests are logged as JSON lines in ~/.mailspoof/audit.log. Generate a report with:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">report</span> <span class="v">--output</span> <span class="s">/path/to/report.json</span><br>$ <span class="k">mailspoof</span> <span class="v">report</span> <span class="v">--format</span> <span class="s">csv</span></div></div>
+        <p>The report includes total tests, success rate, breakdown by scenario and type, risk level (CRITICAL / HIGH / MEDIUM), and remediation recommendations. JSON format is ideal for automation; CSV exports the following columns: timestamp, test_type, scenario, target, from_email, success, category, severity, smtp_server, and error.</p>
+
+        <h3 id="update">Update</h3>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">update</span></div></div>
+
+        <h3 id="uninstall">Uninstall</h3>
+        <p>Remove MailSpoof completely:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">uninstall</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
+      <div class="footer-col"><h5>Product</h5><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="download.html">Download</a><a href="docs.html">Documentation</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="docs.html#install">Installation</a><a href="docs.html#usage">Usage Guide</a><a href="docs.html#server">SMTP Server</a><a href="docs.html#reporting">Reporting</a></div>
+      <div class="footer-col"><h5>Project</h5><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Issues</a><a href="../bug/report/bugreport.html">Report Bug</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a></div>
+    </div>
+    <div class="footer-bottom"><p>Licensed under Apache-2.0. Use only on systems you own or have explicit permission to test.</p><div class="footer-dev"><span class="dev-label">Solo Dev</span><span class="dev-name">Syed Sameer Ul Hassan</span><a href="https://github.com/syed-sameer-ul-hassan" target="_blank" rel="noopener noreferrer" class="dev-github"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a></div></div>
+  </div>
+</footer>
+<div id="cookieOverlay" class="cookie-overlay">
+  <div class="cookie-card">
+    <div id="cookieConsent" class="cookie-consent show">
+      <h3>Before You Continue</h3>
+      <p>To use this website, you must acknowledge the following terms.</p>
+      <div class="warning-box">
+        <p><strong>Legal Disclaimer:</strong> MailSpoof is a security assessment tool designed for authorized penetration testing only. By using this site, you confirm that you will only use MailSpoof on systems you own or have explicit written permission to test. You acknowledge that any illegal, unauthorized, or malicious use is strictly prohibited. <strong>The developers of MailSpoof are not responsible for any damages, legal consequences, or losses resulting from improper or illegal use of this software.</strong> You are solely responsible for ensuring compliance with all applicable laws in your jurisdiction.</p>
+      </div>
+      <div class="cookie-actions">
+        <button type="button" id="cookieAccept" class="btn btn-primary">Accept & Continue</button>
+        <button type="button" id="cookieReject" class="btn-reject">Reject</button>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <a href="privacy-policy.html" style="color:var(--text-fade);font-size:13px;text-decoration:underline;">Privacy Policy</a>
+      </div>
+    </div>
+    <div id="cookieBlocked" class="cookie-blocked">
+      <div class="blocked-icon">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+      </div>
+      <h3>Access Denied</h3>
+      <p>You are not allowed to visit this site. MailSpoof is a security tool that may be harmful if misused. You must accept that you will not use it for illegal purposes. If MailSpoof is used illegally, we are not responsible. Please review and accept the terms to continue.</p>
+      <div class="cookie-actions">
+        <button type="button" id="cookieRemodify" class="btn btn-primary">Re-modify & Accept</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../logs/main.js"></script>
+<script>
+(function() {
+  document.querySelectorAll('.code-block').forEach(function(block) {
+    var header = block.querySelector('.code-header');
+    var body = block.querySelector('.code-body');
+    if (!header || !body) return;
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', function() {
+      var text = body.innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+    header.appendChild(btn);
+  });
+})();
+</script>
+</body>
+</html>

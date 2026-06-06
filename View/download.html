@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src *; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/phone.css">
+<link rel="stylesheet" href="../style/tablet.css">
+<title>MailSpoof - Download</title>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="home.html" class="nav-brand"><img src="../assets/logo.svg" alt="MailSpoof"></a>
+    <button type="button" class="menu-btn" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="nav-links">
+      <a href="features.html">Features</a>
+      <a href="templates.html">Templates</a>
+      <a href="docs.html">Docs</a>
+      <a href="download.html">Download</a>
+      <a href="../bug/report/bugreport.html">Report Bug</a>
+      <a href="support.html">Support</a>
+      <a href="donate.html" class="nav-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Donate</a>
+    </div>
+  </div>
+</nav>
+<style>
+.docs-layout { display:flex; gap:48px; align-items:flex-start; }
+.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; }
+.docs-content { flex:1; min-width:0; }
+.docs-nav a { display:block; padding:8px 0; color:var(--text-dim); font-size:14px; border-left:2px solid transparent; padding-left:14px; margin-left:-14px; transition:all 0.2s; }
+.docs-nav a:hover, .docs-nav a.active { color:var(--accent); border-left-color:var(--accent); }
+.docs-nav h5 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--text-fade); margin:24px 0 10px; }
+.docs-content h3 { font-size:28px; font-weight:700; margin:48px 0 20px; padding-top:24px; border-top:1px solid var(--border); display:flex; align-items:center; gap:16px; }
+.docs-content h3:first-child { margin-top:0; padding-top:0; border-top:none; }
+.docs-content p { color:var(--text-dim); margin-bottom:16px; line-height:1.7; }
+.docs-content ul { margin-bottom:20px; padding-left:20px; color:var(--text-dim); }
+.docs-content li { margin-bottom:8px; }
+.docs-content .feat-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:linear-gradient(135deg, rgba(160,31,31,0.15), rgba(160,31,31,0.05)); border:1px solid rgba(160,31,31,0.25); color:var(--accent-glow); }
+.docs-content .note { background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px 20px; margin:16px 0; }
+.docs-content .note p { margin:0; font-size:13.5px; }
+.docs-content .note strong { color:var(--accent-glow); }
+@media(max-width:767px){ .docs-layout { flex-direction:column; } .docs-nav { display:none; } }
+</style>
+
+<section class="hero" style="padding:140px 0 60px;">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <h1 class="fade-up">Download <span>MailSpoof</span></h1>
+    <p class="fade-up" style="max-width:640px;">Choose your preferred installation method. All methods are free, open-source, and Apache-2.0 licensed.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="docs-layout">
+      <aside class="docs-nav">
+        <h5>Install</h5>
+        <a href="#quick">Quick Install</a>
+        <a href="#online">Online Install</a>
+        <a href="#debian">Debian Package</a>
+        <a href="#manual">Manual Setup</a>
+        <h5>Requirements</h5>
+        <a href="#requirements">System Requirements</a>
+      </aside>
+      <div class="docs-content">
+        <h3 id="quick"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>Quick Install</h3>
+        <p>The recommended method for most users. This clones the entire repository to your local machine, then runs the automated installer script which handles dependency installation, virtual environment creation, and system path setup.</p>
+        <div class="code-block"><div class="code-header">bash<button type="button" class="copy-btn" data-copy="git clone https://github.com/syed-sameer-ul-hassan/MailSpoof.git && cd MailSpoof && bash install.sh">Copy</button></div><div class="code-body">$ <span class="k">git</span> <span class="v">clone</span> <span class="s">https://github.com/syed-sameer-ul-hassan/MailSpoof.git</span><br>$ <span class="k">cd</span> <span class="s">MailSpoof</span> <span class="c">&&</span> <span class="k">bash</span> <span class="s">install.sh</span></div></div>
+        <div class="note"><p><strong>What this does:</strong> Downloads the source code, installs <code>dnspython</code>, creates a Python virtual environment, installs the <code>mailspoof</code> CLI wrapper in your <code>/usr/local/bin</code> or <code>~/.local/bin</code>, and verifies the installation.</p></div>
+
+        <h3 id="online"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg></span>Online Install</h3>
+        <p>For users who want the fastest setup without keeping the source repository. This pipes the install script directly from GitHub into bash, performing a complete installation without cloning.</p>
+        <div class="code-block"><div class="code-header">bash<button type="button" class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/syed-sameer-ul-hassan/MailSpoof/main/install.sh | bash">Copy</button></div><div class="code-body">$ <span class="k">curl</span> <span class="v">-fsSL</span> <span class="s">https://raw.githubusercontent.com/syed-sameer-ul-hassan/MailSpoof/main/install.sh</span> <span class="c">|</span> <span class="k">bash</span></div></div>
+        <div class="note"><p><strong>What this does:</strong> Downloads and executes <code>install.sh</code> directly. It creates a temporary directory, clones the repo internally, runs the installer, then cleans up the source. The CLI wrapper and dependencies remain installed.</p></div>
+        <div class="note" style="border-color:rgba(234,179,8,0.3);"><p><strong>Security Note:</strong> Piping remote scripts to bash carries inherent risk. Review the <a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/install.sh" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow);text-decoration:underline;">install.sh source</a> before executing if you have concerns.</p></div>
+
+        <h3 id="debian"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg></span>Debian Package</h3>
+        <p>Build a native <code>.deb</code> package for Debian-based distributions. This integrates MailSpoof with your system's package manager for clean installation and uninstallation.</p>
+        <div class="code-block"><div class="code-header">bash<button type="button" class="copy-btn" data-copy="make deb && sudo dpkg -i mailspoof-v1.1.0.deb">Copy</button></div><div class="code-body">$ <span class="k">make</span> <span class="v">deb</span><br>$ <span class="k">sudo</span> <span class="v">dpkg</span> <span class="v">-i</span> <span class="s">mailspoof-v1.1.0.deb</span></div></div>
+        <div class="note"><p><strong>What this does:</strong> Compiles a Debian package from source with proper metadata, dependencies, and file manifests. <code>dpkg -i</code> installs it system-wide and registers it with apt for future removal.</p></div>
+        <ul>
+          <li>Works on Debian, Ubuntu, Linux Mint, Kali Linux, and derivatives</li>
+          <li>Integrates with <code>apt remove mailspoof</code> for clean uninstallation</li>
+          <li>Requires <code>dpkg-deb</code> and <code>make</code> installed to build</li>
+        </ul>
+
+        <h3 id="manual"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>Manual Setup</h3>
+        <p>For developers or users who prefer minimal intervention. Simply install the single external dependency and run the tool directly from source without any wrapper or system integration.</p>
+        <div class="code-block"><div class="code-header">bash<button type="button" class="copy-btn" data-copy="pip install dnspython && python3 mailspoof">Copy</button></div><div class="code-body">$ <span class="k">pip</span> <span class="v">install</span> <span class="s">dnspython</span><br>$ <span class="k">python3</span> <span class="s">mailspoof</span></div></div>
+        <div class="note"><p><strong>What this does:</strong> Installs only the <code>dnspython</code> dependency via pip, then executes <code>mailspoof</code> as a Python script. No virtual environment, no system wrapper, no automatic updates.</p></div>
+        <ul>
+          <li>Best for development or debugging</li>
+          <li>No system-wide modifications</li>
+          <li>Requires manual dependency management</li>
+        </ul>
+
+        <h3 id="requirements"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg></span>System Requirements</h3>
+        <p>MailSpoof is designed to run on a wide range of Unix-like systems with minimal overhead.</p>
+        <ul>
+          <li><strong>Python 3.8+</strong> with venv and pip support</li>
+          <li><strong>Platforms:</strong> Linux (Debian, Ubuntu, Fedora, Arch, Alpine, openSUSE), macOS, and Termux (Android)</li>
+          <li><strong>Dependencies:</strong> Only external dependency is <code>dnspython</code>. Everything else uses the Python standard library.</li>
+          <li><strong>Network:</strong> Internet access required for SMTP relay and MX record lookups during testing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
+      <div class="footer-col"><h5>Product</h5><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="download.html">Download</a><a href="docs.html">Documentation</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="docs.html#install">Installation</a><a href="docs.html#usage">Usage Guide</a><a href="docs.html#server">SMTP Server</a><a href="docs.html#reporting">Reporting</a></div>
+      <div class="footer-col"><h5>Project</h5><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Issues</a><a href="../bug/report/bugreport.html">Report Bug</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a></div>
+    </div>
+    <div class="footer-bottom"><p>Licensed under Apache-2.0. Use only on systems you own or have explicit permission to test.</p><div class="footer-dev"><span class="dev-label">Solo Dev</span><span class="dev-name">Syed Sameer Ul Hassan</span><a href="https://github.com/syed-sameer-ul-hassan" target="_blank" rel="noopener noreferrer" class="dev-github"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a></div></div>
+  </div>
+</footer>
+<div id="cookieOverlay" class="cookie-overlay">
+  <div class="cookie-card">
+    <div id="cookieConsent" class="cookie-consent show">
+      <h3>Before You Continue</h3>
+      <p>To use this website, you must acknowledge the following terms.</p>
+      <div class="warning-box">
+        <p><strong>Legal Disclaimer:</strong> MailSpoof is a security assessment tool designed for authorized penetration testing only. By using this site, you confirm that you will only use MailSpoof on systems you own or have explicit written permission to test. You acknowledge that any illegal, unauthorized, or malicious use is strictly prohibited. <strong>The developers of MailSpoof are not responsible for any damages, legal consequences, or losses resulting from improper or illegal use of this software.</strong> You are solely responsible for ensuring compliance with all applicable laws in your jurisdiction.</p>
+      </div>
+      <div class="cookie-actions">
+        <button type="button" id="cookieAccept" class="btn btn-primary">Accept & Continue</button>
+        <button type="button" id="cookieReject" class="btn-reject">Reject</button>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <a href="privacy-policy.html" style="color:var(--text-fade);font-size:13px;text-decoration:underline;">Privacy Policy</a>
+      </div>
+    </div>
+    <div id="cookieBlocked" class="cookie-blocked">
+      <div class="blocked-icon">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+      </div>
+      <h3>Access Denied</h3>
+      <p>You are not allowed to visit this site. MailSpoof is a security tool that may be harmful if misused. You must accept that you will not use it for illegal purposes. If MailSpoof is used illegally, we are not responsible. Please review and accept the terms to continue.</p>
+      <div class="cookie-actions">
+        <button type="button" id="cookieRemodify" class="btn btn-primary">Re-modify & Accept</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = btn.dataset.copy;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy'; }, 1500);
+    });
+  });
+});
+</script>
+<script src="../logs/main.js"></script>
+</body>
+</html>

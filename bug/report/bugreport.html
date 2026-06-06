@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src *; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<title>MailSpoof - Report a Bug</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../style/style.css">
+<link rel="stylesheet" href="../../style/phone.css">
+<link rel="stylesheet" href="../../style/tablet.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="../../View/home.html" class="nav-brand"><img src="../../assets/logo.svg" alt="MailSpoof"></a>
+    <button type="button" class="menu-btn" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="nav-links">
+      <a href="../../View/features.html">Features</a>
+      <a href="../../View/templates.html">Templates</a>
+      <a href="../../View/docs.html">Docs</a>
+      <a href="../../View/download.html">Download</a>
+      <a href="bugreport.html">Report Bug</a>
+      <a href="../../View/support.html">Support</a>
+      <a href="../../View/donate.html" class="nav-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Donate</a>
+    </div>
+  </div>
+</nav>
+<style>
+.docs-layout { display:flex; gap:56px; align-items:flex-start; }
+.docs-nav { position:sticky; top:100px; width:280px; flex-shrink:0; }
+.docs-content { flex:1; min-width:0; }
+.docs-nav a { display:block; padding:8px 0; color:var(--text-dim); font-size:14px; border-left:2px solid transparent; padding-left:14px; margin-left:-14px; transition:all 0.2s; }
+.docs-nav a:hover, .docs-nav a.active { color:var(--accent); border-left-color:var(--accent); }
+.docs-nav h5 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--text-fade); margin:24px 0 10px; }
+.docs-content h3 { font-size:24px; font-weight:700; margin-bottom:20px; scroll-margin-top:100px; }
+.docs-content > p { color:var(--text-dim); margin-bottom:28px; line-height:1.7; }
+.bug-info { background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:20px 24px; margin-bottom:20px; }
+.bug-info h4 { font-size:14px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.bug-info ul { padding-left:18px; color:var(--text-dim); font-size:13.5px; line-height:1.75; }
+.bug-info li { margin-bottom:6px; }
+.sev-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:6px; }
+.sev-critical { background:var(--red); }
+.sev-high { background:var(--yellow); }
+.sev-medium { background:var(--blue); }
+.sev-low { background:var(--text-fade); }
+@media(max-width:767px){ .docs-layout { flex-direction:column; } .docs-nav { display:none; } }
+.rate-limit-popup { display:none; position:fixed; inset:0; z-index:9999; background:rgba(7,8,10,0.85); backdrop-filter:blur(8px); align-items:center; justify-content:center; }
+.rate-limit-popup.show { display:flex; }
+.rate-limit-box { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:40px 48px; max-width:400px; width:90%; text-align:center; box-shadow:0 40px 80px rgba(0,0,0,0.6); }
+.rate-limit-icon { width:64px; height:64px; border-radius:50%; background:rgba(160,31,31,0.12); border:1px solid rgba(160,31,31,0.3); color:var(--accent-glow); display:flex; align-items:center; justify-content:center; margin:0 auto 24px; }
+.rate-limit-box h3 { font-size:20px; font-weight:700; margin-bottom:12px; }
+.rate-limit-box p { color:var(--text-dim); font-size:14px; line-height:1.6; margin-bottom:24px; }
+.rate-limit-box .btn { width:100%; }
+.sev-dropdown, .ver-dropdown { position:relative; }
+.sev-trigger, .ver-trigger { width:100%; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:13px 16px; color:var(--text); font-size:15px; font-weight:500; font-family:var(--font-sans); cursor:pointer; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s, background 0.2s; }
+.sev-trigger:hover, .ver-trigger:hover { border-color:rgba(255,255,255,0.15); background:rgba(0,0,0,0.3); }
+.sev-trigger.open, .ver-trigger.open { border-color:var(--accent); background:rgba(160,31,31,0.06); }
+.sev-trigger .sev-label { display:flex; align-items:center; gap:10px; }
+.sev-trigger .chevron, .ver-trigger .chevron { transition:transform 0.2s; color:var(--text-fade); }
+.sev-trigger.open .chevron, .ver-trigger.open .chevron { transform:rotate(180deg); }
+.sev-menu, .ver-menu { position:absolute; top:calc(100% + 8px); left:0; right:0; background:rgba(11,12,14,0.98); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:6px; z-index:100; display:none; box-shadow:0 20px 40px rgba(0,0,0,0.5); }
+.sev-menu.open, .ver-menu.open { display:block; }
+.sev-option { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:8px; cursor:pointer; color:var(--text); font-size:14px; transition:background 0.15s; }
+.sev-option:hover { background:rgba(255,255,255,0.05); }
+.sev-option.selected { background:rgba(160,31,31,0.1); }
+.sev-option-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.sev-option-desc { color:var(--text-dim); font-size:12px; }
+.ver-option { padding:10px 12px; border-radius:8px; cursor:pointer; color:var(--text); font-size:14px; transition:background 0.15s; }
+.ver-option:hover { background:rgba(255,255,255,0.05); }
+.ver-option.selected { background:rgba(160,31,31,0.1); }
+</style>
+
+<section class="hero" style="padding:140px 0 60px;">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <h1 class="fade-up">Report a <span>Bug</span></h1>
+    <p class="fade-up" style="max-width:640px;">Found an issue? Help us improve MailSpoof by submitting a detailed bug report.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="docs-layout">
+      <aside class="docs-nav">
+        <h5>Report</h5>
+        <a href="#form">Submit Report</a>
+        <h5>Guidelines</h5>
+        <a href="#severity">Severity Levels</a>
+        <a href="#before">Before Reporting</a>
+        <a href="#ishue">GitHub Issues</a>
+        <h5>Resources</h5>
+        <a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Open on GitHub</a>
+        <a href="../../View/docs.html">Documentation</a>
+        <a href="../../View/download.html">Download</a>
+      </aside>
+      <div class="docs-content">
+        <h3 id="form">Submit a Bug Report</h3>
+        <p>Please fill out the form below with as much detail as possible. The more information you provide, the faster we can diagnose and fix the issue.</p>
+
+        <form id="bugForm" class="bug-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" maxlength="100" autocomplete="name" maxlength="100" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" maxlength="254" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="github">GitHub Username <span style="color:var(--text-fade);font-size:12px;font-weight:400;">(optional)</span></label>
+            <input type="text" id="github" name="github" placeholder="@username" autocomplete="username" maxlength="39">
+          </div>
+          <div class="form-group">
+            <label for="subject">Bug Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Short description of the bug" maxlength="200" required>
+          </div>
+          <div class="form-group">
+            <label for="severity">Severity</label>
+            <div class="sev-dropdown" id="sevDropdown">
+              <input type="hidden" id="severity" name="severity" required>
+              <button type="button" class="sev-trigger" id="sevTrigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="sev-label" id="sevTriggerLabel"><span class="sev-option-dot" style="background:transparent;"></span>Select severity level</span>
+                <svg class="chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="sev-menu" id="sevMenu" role="listbox">
+                <div class="sev-option" data-value="critical" role="option">
+                  <span class="sev-option-dot sev-critical"></span>
+                  <span>Critical<span class="sev-option-desc"> — Crash or data loss</span></span>
+                </div>
+                <div class="sev-option" data-value="high" role="option">
+                  <span class="sev-option-dot sev-high"></span>
+                  <span>High<span class="sev-option-desc"> — Major feature broken</span></span>
+                </div>
+                <div class="sev-option" data-value="medium" role="option">
+                  <span class="sev-option-dot sev-medium"></span>
+                  <span>Medium<span class="sev-option-desc"> — Minor feature issue</span></span>
+                </div>
+                <div class="sev-option" data-value="low" role="option">
+                  <span class="sev-option-dot sev-low"></span>
+                  <span>Low<span class="sev-option-desc"> — Cosmetic or UI issue</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="version">MailSpoof Version</label>
+            <div class="ver-dropdown" id="verDropdown">
+              <input type="hidden" id="version" name="version" required>
+              <button type="button" class="ver-trigger" id="verTrigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="ver-label" id="verTriggerLabel">Select version</span>
+                <svg class="chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="ver-menu" id="verMenu" role="listbox">
+                <div class="ver-option selected" data-value="v1.1.0" role="option">v1.1.0</div>
+                <div class="ver-option" data-value="v1.0.0" role="option">v1.0.0</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Bug Description</label>
+            <textarea id="description" name="description" rows="6" placeholder="Describe the bug in detail. Include steps to reproduce, expected behavior, and actual behavior." maxlength="2000" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="steps">Steps to Reproduce</label>
+            <textarea id="steps" name="steps" rows="4" placeholder="1. Step one...&#10;2. Step two...&#10;3. Step three..." maxlength="1000" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="environment">Environment</label>
+            <input type="text" id="environment" name="environment" placeholder="OS, Python version, etc. (e.g., Ubuntu 22.04, Python 3.10)" maxlength="200" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Submit Bug Report</button>
+        </form>
+
+        <div id="formSuccess" style="display:none;text-align:center;padding:48px 0;">
+          <div style="width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+            <svg width="28" height="28" fill="none" stroke="var(--green)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 style="font-size:22px;font-weight:700;margin-bottom:12px;">Bug Report Submitted</h3>
+          <p style="color:var(--text-dim);max-width:400px;margin:0 auto;">Thank you for helping improve MailSpoof. Our team will review your report and follow up via email if needed.</p>
+        </div>
+
+        <div id="rateLimitPopup" class="rate-limit-popup">
+          <div class="rate-limit-box">
+            <div class="rate-limit-icon">
+              <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0zM12 2v4m0 12v4"/></svg>
+            </div>
+            <h3>Daily Limit Reached</h3>
+            <p>You can submit up to 3 bug reports per day. Please try again tomorrow.</p>
+            <button id="rateLimitClose" class="btn btn-primary">Got it</button>
+          </div>
+        </div>
+
+        <h3 id="severity" style="margin-top:56px;">Severity Levels</h3>
+        <div class="bug-info">
+          <h4><span class="sev-dot sev-critical"></span>Critical</h4>
+          <ul>
+            <li>Application crash or unexpected termination</li>
+            <li>Data loss or corruption</li>
+            <li>Security vulnerability</li>
+          </ul>
+        </div>
+        <div class="bug-info">
+          <h4><span class="sev-dot sev-high"></span>High</h4>
+          <ul>
+            <li>Major feature completely non-functional</li>
+            <li>SMTP relay fails entirely</li>
+            <li>Template engine broken</li>
+          </ul>
+        </div>
+        <div class="bug-info">
+          <h4><span class="sev-dot sev-medium"></span>Medium</h4>
+          <ul>
+            <li>Feature works but has significant issues</li>
+            <li>Workarounds exist but are inconvenient</li>
+            <li>Partial data loss in edge cases</li>
+          </ul>
+        </div>
+        <div class="bug-info">
+          <h4><span class="sev-dot sev-low"></span>Low</h4>
+          <ul>
+            <li>Cosmetic or UI issues</li>
+            <li>Typos in output or documentation</li>
+            <li>Minor formatting problems</li>
+          </ul>
+        </div>
+
+        <h3 id="before" style="margin-top:56px;">Before You Report</h3>
+        <div class="bug-info">
+          <h4><svg width="18" height="18" fill="none" stroke="var(--accent-glow)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Checklist</h4>
+          <ul>
+            <li>Check existing <a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow);text-decoration:underline;">GitHub Issues</a> to avoid duplicates</li>
+            <li>Ensure you're running the latest version of MailSpoof</li>
+            <li>Test on a clean environment if possible</li>
+            <li>Include clear steps to reproduce, expected vs actual behavior</li>
+            <li>Provide your OS, Python version, and any error messages</li>
+          </ul>
+        </div>
+
+        <h3 id="ishue" style="margin-top:56px;">Creating a GitHub Issue</h3>
+        <p>We use GitHub Issues to track bugs and feature requests. You can open an issue directly on our repository, or use this form above. Here's how the GitHub issue template is structured:</p>
+
+        <div class="bug-info">
+          <h4>Issue Template Fields</h4>
+          <ul>
+            <li><strong>Description</strong> — A clear description of what went wrong</li>
+            <li><strong>Reproduction Steps</strong> — Step-by-step instructions to reproduce the bug</li>
+            <li><strong>Expected Behavior</strong> — What you expected to happen</li>
+            <li><strong>Version</strong> — Your MailSpoof version (e.g., v1.1.0)</li>
+            <li><strong>Operating System</strong> — Your OS (e.g., Ubuntu 22.04, macOS 14)</li>
+            <li><strong>Logs / Stack Trace</strong> — Any error output or terminal logs</li>
+            <li><strong>Screenshot / Context</strong> — Images or additional information</li>
+          </ul>
+        </div>
+
+        <a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues/new/choose" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-bottom:24px;display:inline-flex;align-items:center;gap:8px;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Continue to GitHub Issues
+        </a>
+
+        <p>To create an issue on GitHub:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">1. Visit: <span class="s">https://github.com/syed-sameer-ul-hassan/MailSpoof/issues</span><br>2. Click <span class="k">New Issue</span><br>3. Select <span class="k">Bug Report</span> template<br>4. Fill in all required fields<br>5. Click <span class="k">Submit new issue</span></div></div>
+
+        <p><strong>Other ways to report:</strong></p>
+        <ul style="color:var(--text-dim);margin-bottom:20px;">
+          <li>This website form (above)</li>
+          <li>Email: <code>security.mailspoof@orildo.sbs</code></li>
+          <li><strong>Security vulnerabilities</strong>: Do NOT open public issues. Email <code>security.mailspoof@orildo.sbs</code> directly.</li>
+        </ul>
+
+        <p>Include this environment info in your report:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">-v</span><br>$ <span class="k">python3</span> <span class="v">--version</span><br>$ <span class="k">uname</span> <span class="v">-a</span></div></div>
+
+        <p>If applicable, include recent log output:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">cat</span> <span class="s">~/.mailspoof/audit.log</span> <span class="c">|</span> <span class="k">tail</span> <span class="v">-n</span> <span class="v">50</span></div></div>
+
+        <div class="bug-info">
+          <h4>Quick Checklist</h4>
+          <ul>
+            <li>I am using the latest version (<code>mailspoof -v</code>)</li>
+            <li>I have checked existing issues for duplicates</li>
+            <li>I have included reproduction steps</li>
+            <li>I have included my OS and Python version</li>
+            <li>I have attached logs if applicable</li>
+            <li>This is NOT a security vulnerability (email security.mailspoof@orildo.sbs for those)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-area"><img src="../../assets/logo.svg" alt="MailSpoof"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
+      <div class="footer-col"><h5>Product</h5><a href="../../View/features.html">Features</a><a href="../../View/templates.html">Templates</a><a href="../../View/download.html">Download</a><a href="../../View/docs.html">Documentation</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="../../View/docs.html#install">Installation</a><a href="../../View/docs.html#usage">Usage Guide</a><a href="../../View/docs.html#server">SMTP Server</a><a href="../../View/docs.html#reporting">Reporting</a></div>
+      <div class="footer-col"><h5>Project</h5><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Issues</a><a href="bugreport.html">Report Bug</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a></div>
+    </div>
+    <div class="footer-bottom"><p>Licensed under Apache-2.0. Use only on systems you own or have explicit permission to test.</p><div class="footer-dev"><span class="dev-label">Solo Dev</span><span class="dev-name">Syed Sameer Ul Hassan</span><a href="https://github.com/syed-sameer-ul-hassan" target="_blank" rel="noopener noreferrer" class="dev-github"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a></div></div>
+  </div>
+</footer>
+
+<script src="../../logs/main.js"></script>
+<script src="../../logs/report.js"></script>
+<script>
+const popup = document.getElementById('rateLimitPopup');
+const popupTitle = popup.querySelector('h3');
+const popupText = popup.querySelector('p');
+
+document.getElementById('rateLimitClose').addEventListener('click', function() {
+  popup.classList.remove('show');
+});
+
+/* Custom Severity Dropdown */
+(function() {
+  var trigger = document.getElementById('sevTrigger');
+  var menu = document.getElementById('sevMenu');
+  var hidden = document.getElementById('severity');
+  var label = document.getElementById('sevTriggerLabel');
+  var dropdown = document.getElementById('sevDropdown');
+  var options = menu.querySelectorAll('.sev-option');
+
+  var colors = {
+    critical: 'var(--red)',
+    high: 'var(--yellow)',
+    medium: 'var(--blue)',
+    low: 'var(--text-fade)'
+  };
+  var labels = {
+    critical: 'Critical',
+    high: 'High',
+    medium: 'Medium',
+    low: 'Low'
+  };
+
+  function open() {
+    trigger.classList.add('open');
+    menu.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function close() {
+    trigger.classList.remove('open');
+    menu.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (menu.classList.contains('open')) close(); else open();
+  });
+
+  options.forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var val = opt.dataset.value;
+      hidden.value = val;
+      label.innerHTML = '<span class="sev-option-dot" style="background:' + colors[val] + ';"></span>' + labels[val];
+      options.forEach(function(o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      close();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!dropdown.contains(e.target)) close();
+  });
+})();
+
+/* Custom Version Dropdown */
+(function() {
+  var trigger = document.getElementById('verTrigger');
+  var menu = document.getElementById('verMenu');
+  var hidden = document.getElementById('version');
+  var label = document.getElementById('verTriggerLabel');
+  var dropdown = document.getElementById('verDropdown');
+  var options = menu.querySelectorAll('.ver-option');
+
+  // Auto-select the first option
+  var first = options[0];
+  if (first) {
+    hidden.value = first.dataset.value;
+    label.textContent = first.dataset.value;
+    options.forEach(function(o) { o.classList.remove('selected'); });
+    first.classList.add('selected');
+  }
+
+  function open() {
+    trigger.classList.add('open');
+    menu.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function close() {
+    trigger.classList.remove('open');
+    menu.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (menu.classList.contains('open')) close(); else open();
+  });
+
+  options.forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var val = opt.dataset.value;
+      hidden.value = val;
+      label.textContent = val;
+      options.forEach(function(o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      close();
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!dropdown.contains(e.target)) close();
+  });
+})();
+
+function showPopup(title, message) {
+  popupTitle.textContent = title;
+  popupText.textContent = message;
+  popup.classList.add('show');
+}
+
+document.getElementById('bugForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  if (!hasTarget()) {
+    showPopup('Not Configured', 'Delivery endpoint is not configured.');
+    btn.textContent = originalText;
+    btn.disabled = false;
+    return;
+  }
+
+  sendBugReport(new FormData(form))
+    .then(() => {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    })
+    .catch(err => {
+      const msg = err.message;
+      if (msg.includes('Daily limit') || msg.includes('limit reached')) {
+        showPopup('Daily Limit Reached', 'You can submit up to 3 bug reports per day. Please try again tomorrow.');
+      } else {
+        showPopup('Error', 'Failed to send report: ' + msg);
+      }
+      btn.textContent = originalText;
+      btn.disabled = false;
+    });
+});
+</script>
+<div id="cookieOverlay" class="cookie-overlay">
+  <div class="cookie-card">
+    <div id="cookieConsent" class="cookie-consent show">
+      <h3>Before You Continue</h3>
+      <p>To use this website, you must acknowledge the following terms.</p>
+      <div class="warning-box">
+        <p><strong>Legal Disclaimer:</strong> MailSpoof is a security assessment tool designed for authorized penetration testing only. By using this site, you confirm that you will only use MailSpoof on systems you own or have explicit written permission to test. You acknowledge that any illegal, unauthorized, or malicious use is strictly prohibited. <strong>The developers of MailSpoof are not responsible for any damages, legal consequences, or losses resulting from improper or illegal use of this software.</strong> You are solely responsible for ensuring compliance with all applicable laws in your jurisdiction.</p>
+      </div>
+      <div class="cookie-actions">
+        <button type="button" id="cookieAccept" class="btn btn-primary">Accept & Continue</button>
+        <button type="button" id="cookieReject" class="btn-reject">Reject</button>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <a href="../../View/privacy-policy.html" style="color:var(--text-fade);font-size:13px;text-decoration:underline;">Privacy Policy</a>
+      </div>
+    </div>
+    <div id="cookieBlocked" class="cookie-blocked">
+      <div class="blocked-icon">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+      </div>
+      <h3>Access Denied</h3>
+      <p>You are not allowed to visit this site. MailSpoof is a security tool that may be harmful if misused. You must accept that you will not use it for illegal purposes. If MailSpoof is used illegally, we are not responsible. Please review and accept the terms to continue.</p>
+      <div class="cookie-actions">
+        <button type="button" id="cookieRemodify" class="btn btn-primary">Re-modify & Accept</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

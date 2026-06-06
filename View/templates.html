@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src *; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/phone.css">
+<link rel="stylesheet" href="../style/tablet.css">
+<title>MailSpoof - Templates</title>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="home.html" class="nav-brand"><img src="../assets/logo.svg" alt="MailSpoof"></a>
+    <button type="button" class="menu-btn" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="nav-links">
+      <a href="features.html">Features</a>
+      <a href="templates.html">Templates</a>
+      <a href="docs.html">Docs</a>
+      <a href="download.html">Download</a>
+      <a href="../bug/report/bugreport.html">Report Bug</a>
+      <a href="support.html">Support</a>
+      <a href="donate.html" class="nav-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Donate</a>
+    </div>
+  </div>
+</nav>
+<style>
+.docs-layout { display:flex; gap:48px; align-items:flex-start; }
+.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; }
+.docs-content { flex:1; min-width:0; }
+.docs-nav a { display:flex; align-items:center; justify-content:space-between; padding:8px 0; color:var(--text-dim); font-size:14px; border-left:2px solid transparent; padding-left:14px; margin-left:-14px; transition:all 0.2s; }
+.docs-nav a:hover, .docs-nav a.active { color:var(--accent); border-left-color:var(--accent); }
+.docs-nav a .sev-tag { font-size:10px; font-weight:700; text-transform:uppercase; padding:2px 8px; border-radius:100px; }
+.docs-nav h5 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--text-fade); margin:24px 0 10px; }
+.docs-content h3 { font-size:28px; font-weight:700; margin:48px 0 20px; padding-top:24px; border-top:1px solid var(--border); }
+.docs-content h3:first-child { margin-top:0; padding-top:0; border-top:none; }
+.docs-content p { color:var(--text-dim); margin-bottom:16px; }
+.docs-content ul { margin-bottom:20px; padding-left:20px; color:var(--text-dim); }
+.docs-content li { margin-bottom:8px; }
+.template-meta { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+.template-meta span { font-size:13px; color:var(--text-fade); background:rgba(255,255,255,0.04); border:1px solid var(--border); padding:6px 14px; border-radius:8px; }
+.template-meta span strong { color:var(--text); }
+.template-preview {
+  background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); border-radius:14px;
+  padding:24px 28px; font-family:var(--font-mono); font-size:13px; line-height:1.9;
+  color:var(--text-dim); margin-top:20px;
+}
+.template-preview .label { color:var(--accent-glow); font-weight:600; }
+.template-row { display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap; padding:14px 18px; border:1px solid rgba(255,255,255,0.06); border-radius:12px; margin-bottom:12px; background:rgba(0,0,0,0.2); }
+.template-row-name { font-weight:700; font-size:15px; color:var(--text); min-width:220px; }
+.template-row-meta { margin-left:auto; flex-shrink:0; }
+.template-row-desc { width:100%; font-size:13px; color:var(--text-dim); margin-top:4px; }
+@media(max-width:767px){ .docs-layout { flex-direction:column; } .docs-nav { display:none; } .template-row { flex-direction:column; gap:8px; } .template-row-name { min-width:auto; } .template-row-meta { margin-left:0; } }
+</style>
+
+<section class="hero" style="padding:140px 0 60px;">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <h1 class="fade-up">Built-in <span>Phishing Templates</span></h1>
+    <p class="fade-up" style="max-width:700px;">Professionally crafted email scenarios covering the most common social engineering attack vectors.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="docs-layout">
+      <aside class="docs-nav">
+        <h5>Categories</h5>
+        <a href="#corporate">Corporate</a>
+        <a href="#financial">Financial</a>
+        <a href="#security">Security & IT</a>
+        <a href="#social">Social Media</a>
+        <a href="#collab">Collaboration</a>
+        <a href="#devcloud">Developer & Cloud</a>
+        <a href="#consumer">Consumer Services</a>
+        <a href="#messaging">Messaging</a>
+        <h5>Builder</h5>
+        <a href="#custom">Create Your Own</a>
+        <h5>Management</h5>
+        <a href="#preview">Preview & Filter</a>
+        <a href="#manage">Edit & Remove</a>
+      </aside>
+      <div class="docs-content">
+        <p style="color:var(--text-dim); margin-bottom:28px;">MailSpoof ships with <strong>45+ professionally crafted phishing templates</strong> spanning corporate, financial, social media, cloud, and consumer service attack vectors. Each template includes realistic HTML formatting, spoofed sender identity, and urgency-driven calls-to-action.</p>
+
+        <h3 id="corporate">Corporate</h3>
+        <div class="template-row"><div class="template-row-name">Payment Authorization - CFO</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3);">Critical</span></div><div class="template-row-desc">Business Email Compromise — CFO impersonation pressuring urgent vendor payment.</div></div>
+        <div class="template-row"><div class="template-row-name">HR Benefits Form Update</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Human Resources Impersonation — fake benefits enrollment form to harvest PII.</div></div>
+        <div class="template-row"><div class="template-row-name">Overdue Invoice Reminder</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Finance Impersonation — fake past-due invoice with payment portal link.</div></div>
+
+        <h3 id="financial">Financial</h3>
+        <div class="template-row"><div class="template-row-name">Account Suspension Notice - Bank Security</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3);">Critical</span></div><div class="template-row-desc">Financial Institution Fraud — suspended account status panel with restore-access link.</div></div>
+        <div class="template-row"><div class="template-row-name">PayPal Account Review</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Financial Services Phishing — unusual activity review to resolve fake limitation.</div></div>
+        <div class="template-row"><div class="template-row-name">PayPal Invoice Reminder</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Financial Services Phishing — pending invoice payment CTA.</div></div>
+
+        <h3 id="security">Security & IT</h3>
+        <div class="template-row"><div class="template-row-name">IT Service Desk - Password Reset</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Technical Support Fraud — new-device login alert with "Verify Now" link.</div></div>
+        <div class="template-row"><div class="template-row-name">MFA Reset Request</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3);">Critical</span></div><div class="template-row-desc">Security Operations Impersonation — expired MFA session re-authentication trap.</div></div>
+        <div class="template-row"><div class="template-row-name">Microsoft 365 License Expiry Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Software/License Fraud — license expiration banner with renewal CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Salesforce MFA Reset</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">SaaS Platform Phishing — forced MFA reset to capture credentials.</div></div>
+        <div class="template-row"><div class="template-row-name">Apple ID Locked Alert</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Consumer Account Phishing — sign-in anomaly lock with unlock CTA.</div></div>
+
+        <h3 id="social">Social Media</h3>
+        <div class="template-row"><div class="template-row-name">LinkedIn Security Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Social Media Phishing — unusual login activity with verify-account link.</div></div>
+        <div class="template-row"><div class="template-row-name">Facebook Policy Violation Review</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Social Media Phishing — flagged page policy violation with review CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Instagram Support Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — sign-in anomaly confirmation to avoid temporary lock.</div></div>
+        <div class="template-row"><div class="template-row-name">Twitter/X Account Lock Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Social Media Phishing — temporary lock due to unusual activity with unlock link.</div></div>
+        <div class="template-row"><div class="template-row-name">TikTok Creator Monetization Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — monetization eligibility review for creators.</div></div>
+        <div class="template-row"><div class="template-row-name">YouTube Copyright Claim Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Social Media Phishing — fake copyright strike with review/counter-notice CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Snapchat Account Locked</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — suspicious activity lock with unlock CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Pinterest Security Check</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — new login review to keep boards secure.</div></div>
+        <div class="template-row"><div class="template-row-name">Reddit Moderator Action Required</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — fake moderator policy review notice.</div></div>
+        <div class="template-row"><div class="template-row-name">Discord Trust & Safety Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — server compliance review to capture credentials.</div></div>
+        <div class="template-row"><div class="template-row-name">Meta Ads Payment Failure</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Social Media Phishing — ads billing failure with update-billing CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Instagram Ads Policy Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Social Media Phishing — ads policy violation with review CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">LinkedIn Job Offer Confirmation</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — fake job opportunity to harvest profile/login info.</div></div>
+        <div class="template-row"><div class="template-row-name">Twitch Partner Eligibility Review</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Social Media Phishing — partner review to collect credentials.</div></div>
+
+        <h3 id="collab">Collaboration</h3>
+        <div class="template-row"><div class="template-row-name">Slack Workspace Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Collaboration Platform Phishing — fake sign-in confirmation for workspace access.</div></div>
+        <div class="template-row"><div class="template-row-name">Zoom Account Suspension Notice</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Collaboration Platform Phishing — suspension threat to prompt verification.</div></div>
+        <div class="template-row"><div class="template-row-name">Zoom Recording Share Notification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Collaboration Platform Phishing — cloud recording share with view link.</div></div>
+        <div class="template-row"><div class="template-row-name">Outlook Quarantine Release</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Email Platform Phishing — fake quarantined message release CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Microsoft Teams Guest Access</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Collaboration Platform Phishing — fake guest team invitation acceptance.</div></div>
+        <div class="template-row"><div class="template-row-name">OneDrive Shared Folder Access</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">SaaS Platform Phishing — shared folder confirmation for OneDrive/SharePoint.</div></div>
+        <div class="template-row"><div class="template-row-name">Google Workspace Sharing Review</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">SaaS Platform Phishing — document share review confirmation.</div></div>
+        <div class="template-row"><div class="template-row-name">Dropbox File Access Expiring</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">File Sharing Phishing — shared file expiry with extend-access CTA.</div></div>
+
+        <h3 id="devcloud">Developer & Cloud</h3>
+        <div class="template-row"><div class="template-row-name">GitHub OAuth Re-Authentication</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Developer Platform Phishing — OAuth re-auth for organization repo access.</div></div>
+        <div class="template-row"><div class="template-row-name">GitLab OAuth Token Renewal</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Developer Platform Phishing — token renewal to keep CI/CD access.</div></div>
+        <div class="template-row"><div class="template-row-name">GitHub SSO Re-Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(234,179,8,0.15);color:var(--yellow);border:1px solid rgba(234,179,8,0.3);">High</span></div><div class="template-row-desc">Developer Platform Phishing — SSO session expiration for org access.</div></div>
+        <div class="template-row"><div class="template-row-name">Bitbucket Access Review</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Developer Platform Phishing — pending access request review.</div></div>
+        <div class="template-row"><div class="template-row-name">AWS Root Access Alert</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3);">Critical</span></div><div class="template-row-desc">Cloud Platform Phishing — root login detection with verify CTA.</div></div>
+
+        <h3 id="consumer">Consumer Services</h3>
+        <div class="template-row"><div class="template-row-name">Spotify Payment Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Consumer Service Phishing — billing failure with verify-payment CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Netflix Account Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Consumer Service Phishing — payment verification to continue streaming.</div></div>
+        <div class="template-row"><div class="template-row-name">Airbnb Payout Confirmation</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Consumer Service Phishing — payout details confirmation for hosts.</div></div>
+        <div class="template-row"><div class="template-row-name">Uber Receipt Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(100,116,139,0.15);color:var(--text-fade);border:1px solid rgba(100,116,139,0.3);">Low</span></div><div class="template-row-desc">Consumer Service Phishing — trip receipt review to harvest billing info.</div></div>
+        <div class="template-row"><div class="template-row-name">Amazon Order Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Consumer Service Phishing — fake order confirmation/dispute CTA.</div></div>
+        <div class="template-row"><div class="template-row-name">Prime Video Payment Authorization</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Consumer Service Phishing — payment authorization failure with update CTA.</div></div>
+
+        <h3 id="messaging">Messaging</h3>
+        <div class="template-row"><div class="template-row-name">WhatsApp Backup Verification</div><div class="template-row-meta"><span class="sev-tag" style="background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3);">Medium</span></div><div class="template-row-desc">Messaging Platform Phishing — backup access verification CTA.</div></div>
+
+        <h3 id="custom">Create Your Own Templates</h3>
+        <p>MailSpoof includes an interactive template builder for crafting custom phishing scenarios tailored to your organization's unique threat landscape. Run the create command to start the wizard:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">create</span><br>Template name: <span class="s">Custom Invoice</span><br>Category: <span class="s">Billing Fraud</span><br>Severity: <span class="s">High</span><br>Tags: <span class="s">urgent, billing</span><br>[+] Template saved: ~/.mailspoof/templates/custom_invoice.txt</div></div>
+
+        <h3 id="preview">Preview & Filter</h3>
+        <p>Preview any template before deploying it, and filter the list by keyword or tag to find the right scenario quickly.</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">preview</span> <span class="v">1</span><br>$ <span class="k">mailspoof</span> <span class="v">list</span> <span class="v">--filter</span> <span class="s">ceo</span></div></div>
+
+        <h3 id="manage">Edit & Remove Templates</h3>
+        <p>Manage custom templates directly from the CLI. Edit opens your default editor (or nano), and remove deletes the custom template file.</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">edit-template</span> <span class="v">6</span><br>$ <span class="k">mailspoof</span> <span class="v">remove-template</span> <span class="v">6</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
+      <div class="footer-col"><h5>Product</h5><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="download.html">Download</a><a href="docs.html">Documentation</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="docs.html#install">Installation</a><a href="docs.html#usage">Usage Guide</a><a href="docs.html#server">SMTP Server</a><a href="docs.html#reporting">Reporting</a></div>
+      <div class="footer-col"><h5>Project</h5><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Issues</a><a href="../bug/report/bugreport.html">Report Bug</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a></div>
+    </div>
+    <div class="footer-bottom"><p>Licensed under Apache-2.0. Use only on systems you own or have explicit permission to test.</p><div class="footer-dev"><span class="dev-label">Solo Dev</span><span class="dev-name">Syed Sameer Ul Hassan</span><a href="https://github.com/syed-sameer-ul-hassan" target="_blank" rel="noopener noreferrer" class="dev-github"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a></div></div>
+  </div>
+</footer>
+<div id="cookieOverlay" class="cookie-overlay">
+  <div class="cookie-card">
+    <div id="cookieConsent" class="cookie-consent show">
+      <h3>Before You Continue</h3>
+      <p>To use this website, you must acknowledge the following terms.</p>
+      <div class="warning-box">
+        <p><strong>Legal Disclaimer:</strong> MailSpoof is a security assessment tool designed for authorized penetration testing only. By using this site, you confirm that you will only use MailSpoof on systems you own or have explicit written permission to test. You acknowledge that any illegal, unauthorized, or malicious use is strictly prohibited. <strong>The developers of MailSpoof are not responsible for any damages, legal consequences, or losses resulting from improper or illegal use of this software.</strong> You are solely responsible for ensuring compliance with all applicable laws in your jurisdiction.</p>
+      </div>
+      <div class="cookie-actions">
+        <button type="button" id="cookieAccept" class="btn btn-primary">Accept & Continue</button>
+        <button type="button" id="cookieReject" class="btn-reject">Reject</button>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <a href="privacy-policy.html" style="color:var(--text-fade);font-size:13px;text-decoration:underline;">Privacy Policy</a>
+      </div>
+    </div>
+    <div id="cookieBlocked" class="cookie-blocked">
+      <div class="blocked-icon">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+      </div>
+      <h3>Access Denied</h3>
+      <p>You are not allowed to visit this site. MailSpoof is a security tool that may be harmful if misused. You must accept that you will not use it for illegal purposes. If MailSpoof is used illegally, we are not responsible. Please review and accept the terms to continue.</p>
+      <div class="cookie-actions">
+        <button type="button" id="cookieRemodify" class="btn btn-primary">Re-modify & Accept</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../logs/main.js"></script>
+</body>
+</html>

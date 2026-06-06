@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src *; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<title>MailSpoof - Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/phone.css">
+<link rel="stylesheet" href="../style/tablet.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="home.html" class="nav-brand"><img src="../assets/logo.svg" alt="MailSpoof"></a>
+    <button type="button" class="menu-btn" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="nav-links">
+      <a href="features.html">Features</a>
+      <a href="templates.html">Templates</a>
+      <a href="docs.html">Docs</a>
+      <a href="download.html">Download</a>
+      <a href="../bug/report/bugreport.html">Report Bug</a>
+      <a href="support.html">Support</a>
+      <a href="donate.html" class="nav-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Donate</a>
+    </div>
+  </div>
+</nav>
+<style>
+.docs-layout { display:flex; gap:48px; align-items:flex-start; }
+.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; }
+.docs-content { flex:1; min-width:0; }
+.docs-nav a { display:block; padding:8px 0; color:var(--text-dim); font-size:14px; border-left:2px solid transparent; padding-left:14px; margin-left:-14px; transition:all 0.2s; }
+.docs-nav a:hover, .docs-nav a.active { color:var(--accent); border-left-color:var(--accent); }
+.docs-nav h5 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--text-fade); margin:24px 0 10px; }
+.docs-content h3 { font-size:28px; font-weight:700; margin:48px 0 20px; padding-top:24px; border-top:1px solid var(--border); display:flex; align-items:center; gap:16px; }
+.docs-content h3:first-child { margin-top:0; padding-top:0; border-top:none; }
+.docs-content p { color:var(--text-dim); margin-bottom:16px; line-height:1.7; }
+.docs-content ul { margin-bottom:20px; padding-left:20px; color:var(--text-dim); }
+.docs-content li { margin-bottom:8px; }
+.docs-content .feat-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:linear-gradient(135deg, rgba(160,31,31,0.15), rgba(160,31,31,0.05)); border:1px solid rgba(160,31,31,0.25); color:var(--accent-glow); }
+.privacy-highlight { background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:20px 24px; margin:20px 0; }
+.privacy-highlight p { margin:0; font-size:13.5px; }
+.privacy-highlight strong { color:var(--accent-glow); }
+.cookie-inline { background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:28px 32px; margin-top:48px; }
+.cookie-inline h4 { font-size:16px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+.cookie-inline p { font-size:14px; margin-bottom:20px; }
+.cookie-inline-actions { display:flex; gap:12px; flex-wrap:wrap; }
+.cookie-status { background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:20px 24px; margin-top:48px; display:none; }
+.cookie-status p { margin:0; font-size:14px; }
+@media(max-width:767px){ .docs-layout { flex-direction:column; } .docs-nav { display:none; } }
+</style>
+
+<section class="hero" style="padding:140px 0 60px;">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <h1 class="fade-up">Privacy <span>Policy</span></h1>
+    <p class="fade-up" style="max-width:640px;">Last updated: June 5, 2026</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="docs-layout">
+      <aside class="docs-nav">
+        <h5>Policy</h5>
+        <a href="#introduction">Introduction</a>
+        <a href="#collection">Information We Collect</a>
+        <a href="#cookies">Cookies</a>
+        <a href="#third-party">Third-Party Links</a>
+        <a href="#legal">Legal Disclaimer</a>
+        <a href="#changes">Changes to Policy</a>
+        <a href="#contact">Contact</a>
+      </aside>
+      <div class="docs-content">
+        <h3 id="introduction"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>Introduction</h3>
+        <p>MailSpoof respects your privacy. This Privacy Policy explains how we handle information when you visit our website. By using this site, you agree to the terms outlined below.</p>
+
+        <h3 id="collection"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg></span>Information We Collect</h3>
+        <p>This is a static informational website. We do not collect, store, or process any personal data directly. The only data stored is your cookie preference (accepted or not), which is saved locally in your browser via localStorage and is not transmitted to any server.</p>
+
+        <h3 id="cookies"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>Cookies</h3>
+        <p>We use a single cookie consent banner that stores your preference in localStorage. No tracking cookies, analytics cookies, or third-party cookies are used on this website.</p>
+        <ul>
+          <li>Cookie consent state stored in browser localStorage only</li>
+          <li>No data transmitted to external servers</li>
+          <li>No analytics or tracking scripts loaded</li>
+        </ul>
+
+        <h3 id="third-party"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span>Third-Party Links</h3>
+        <p>Our website may contain links to external sites such as GitHub. We are not responsible for the privacy practices or content of those third-party websites.</p>
+
+        <h3 id="legal"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></span>Legal Use Disclaimer</h3>
+        <p>MailSpoof is an email security assessment framework designed for authorized penetration testing and security research.</p>
+        <div class="privacy-highlight">
+          <p><strong>Important:</strong> We are not responsible for any illegal, unauthorized, or malicious use of the tool. By downloading or using MailSpoof, you agree to use it only on systems you own or have explicit written permission to test. Any misuse, including but not limited to phishing attacks, spam, or unauthorized access to systems, is strictly prohibited and may violate local, national, and international laws.</p>
+        </div>
+        <p>The developers and contributors of MailSpoof assume no liability for damages, legal consequences, or losses resulting from improper or illegal use of this software. Users are solely responsible for ensuring compliance with all applicable laws and regulations in their jurisdiction.</p>
+
+        <h3 id="changes"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></span>Changes to This Policy</h3>
+        <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+
+        <h3 id="contact"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span>Contact</h3>
+        <p>For any questions regarding this Privacy Policy, please open an issue on our <a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer" style="color:var(--accent-glow);text-decoration:underline;">GitHub repository</a>.</p>
+
+        <div id="inlineConsent" class="cookie-inline">
+          <h4><svg width="20" height="20" fill="none" stroke="var(--accent-glow)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>Cookie Consent</h4>
+          <p>By using this website, you confirm that you will only use MailSpoof on systems you own or have explicit written permission to test. You acknowledge that any illegal, unauthorized, or malicious use is strictly prohibited.</p>
+          <div class="cookie-inline-actions">
+            <button type="button" id="inlineAccept" class="btn btn-primary">Accept</button>
+            <button type="button" id="inlineReject" class="btn btn-secondary">Reject</button>
+          </div>
+        </div>
+        <div id="consentAccepted" class="cookie-status" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.08);">
+          <p style="color:var(--green);"><svg width="16" height="16" fill="none" stroke="var(--green)" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:8px;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>You have accepted the terms. Thank you for using MailSpoof responsibly.</p>
+        </div>
+        <div id="consentRejected" class="cookie-status" style="border-color:rgba(234,179,8,0.3);background:rgba(234,179,8,0.08);">
+          <p style="color:var(--yellow);"><svg width="16" height="16" fill="none" stroke="var(--yellow)" stroke-width="2.5" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:8px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>You have rejected the terms. <button type="button" id="reconsiderAccept" class="btn btn-primary" style="margin-left:12px;padding:4px 12px;font-size:12px;">Accept Instead</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
+      <div class="footer-col"><h5>Product</h5><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="download.html">Download</a><a href="docs.html">Documentation</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="docs.html#install">Installation</a><a href="docs.html#usage">Usage Guide</a><a href="docs.html#server">SMTP Server</a><a href="docs.html#reporting">Reporting</a></div>
+      <div class="footer-col"><h5>Project</h5><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Issues</a><a href="../bug/report/bugreport.html">Report Bug</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a></div>
+    </div>
+    <div class="footer-bottom"><p>Licensed under Apache-2.0. Use only on systems you own or have explicit permission to test.</p><div class="footer-dev"><span class="dev-label">Solo Dev</span><span class="dev-name">Syed Sameer Ul Hassan</span><a href="https://github.com/syed-sameer-ul-hassan" target="_blank" rel="noopener noreferrer" class="dev-github"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a></div></div>
+  </div>
+</footer>
+<script src="../logs/main.js"></script>
+<script>
+const consentCard = document.getElementById('inlineConsent');
+const acceptedMsg = document.getElementById('consentAccepted');
+const rejectedMsg = document.getElementById('consentRejected');
+if (localStorage.getItem('cookieConsent') === 'accepted') {
+  consentCard.style.display = 'none';
+  acceptedMsg.style.display = 'block';
+} else if (localStorage.getItem('cookieConsent') === 'rejected') {
+  consentCard.style.display = 'none';
+  rejectedMsg.style.display = 'block';
+}
+document.getElementById('inlineAccept').addEventListener('click', () => {
+  localStorage.setItem('cookieConsent', 'accepted');
+  consentCard.style.display = 'none';
+  acceptedMsg.style.display = 'block';
+});
+document.getElementById('inlineReject').addEventListener('click', () => {
+  localStorage.setItem('cookieConsent', 'rejected');
+  consentCard.style.display = 'none';
+  rejectedMsg.style.display = 'block';
+});
+document.getElementById('reconsiderAccept').addEventListener('click', () => {
+  localStorage.setItem('cookieConsent', 'accepted');
+  rejectedMsg.style.display = 'none';
+  acceptedMsg.style.display = 'block';
+});
+</script>
+</body>
+</html>
