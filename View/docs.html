@@ -12,6 +12,13 @@
 <link rel="stylesheet" href="../style/phone.css">
 <link rel="stylesheet" href="../style/tablet.css">
 <title>MailSpoof - Documentation</title>
+<meta name="description" content="Official documentation for MailSpoof. Learn how to install, configure, and use the framework for authorized email security assessments.">
+<meta name="keywords" content="MailSpoof documentation, install MailSpoof, MailSpoof CLI, MailSpoof guide, Termux install">
+<meta name="author" content="Syed Sameer Ul Hassan">
+<meta property="og:title" content="MailSpoof - Documentation & Guide">
+<meta property="og:description" content="Official documentation for MailSpoof. Learn how to install, configure, and use the framework.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
 </head>
 <body>
 <nav class="navbar">
@@ -23,6 +30,7 @@
       <a href="templates.html">Templates</a>
       <a href="docs.html">Docs</a>
       <a href="download.html">Download</a>
+      <a href="release.html">Releases</a>
       <a href="../bug/report/bugreport.html">Report Bug</a>
       <a href="support.html">Support</a>
       <a href="donate.html" class="nav-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Donate</a>
@@ -31,7 +39,8 @@
 </nav>
 <style>
 .docs-layout { display:flex; gap:48px; align-items:flex-start; }
-.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; }
+.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; max-height:calc(100vh - 130px); overflow-y:auto; scrollbar-width:none; }
+.docs-nav::-webkit-scrollbar { display:none; }
 .docs-content { flex:1; min-width:0; }
 .docs-nav a { display:block; padding:8px 0; color:var(--text-dim); font-size:14px; border-left:2px solid transparent; padding-left:14px; margin-left:-14px; transition:all 0.2s; }
 .docs-nav a:hover, .docs-nav a.active { color:var(--accent); border-left-color:var(--accent); }
@@ -62,17 +71,23 @@
       <aside class="docs-nav">
         <h5>Getting Started</h5>
         <a href="#install">Installation</a>
+        <a href="#termux">Termux (Android)</a>
+        <a href="#docker">Docker</a>
         <a href="#quickstart">Quick Start</a>
         <h5>Usage</h5>
         <a href="#commands">Commands</a>
         <a href="#server">SMTP Server</a>
         <a href="#templates">Templates</a>
         <a href="#custom">Custom Tests</a>
+        <h5>v1.2.0 New</h5>
+        <a href="#bulk">Bulk CSV Targeting</a>
+        <a href="#attachments">Attachments</a>
+        <a href="#headers">Header Injection</a>
         <h5>Advanced</h5>
         <a href="#verbose">Verbose Diagnostics</a>
         <a href="#relay">SMTP Relay</a>
         <a href="#profiles">SMTP Profiles</a>
-        <a href="#preview">Preview & Filter</a>
+        <a href="#preview">Preview &amp; Filter</a>
         <a href="#logs">Audit Logs</a>
         <a href="#reporting">Reporting</a>
         <a href="#update">Update</a>
@@ -81,17 +96,27 @@
       <div class="docs-content">
         <h3 id="install">Installation</h3>
         <p>MailSpoof supports Linux, macOS, and Termux. Clone the repo and run the installer:</p>
-        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">git</span> <span class="v">clone</span> <span class="s">https://github.com/syed-sameer-ul-hassan/MailSpoof.git</span><br>$ <span class="k">cd</span> <span class="s">MailSpoof</span> <span class="c">&&</span> <span class="k">bash</span> <span class="s">install.sh</span></div></div>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">git</span> <span class="v">clone</span> <span class="s">https://github.com/syed-sameer-ul-hassan/MailSpoof.git</span><br>$ <span class="k">cd</span> <span class="s">MailSpoof</span> <span class="c">&amp;&amp;</span> <span class="k">bash</span> <span class="s">install.sh</span></div></div>
         <p>Or install directly without cloning:</p>
         <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">curl</span> <span class="v">-fsSL</span> <span class="s">https://raw.githubusercontent.com/syed-sameer-ul-hassan/MailSpoof/main/install.sh</span> <span class="c">|</span> <span class="k">bash</span></div></div>
         <p>The installer auto-detects your distribution and installs Python, venv, and pip if needed.</p>
+
+        <h3 id="termux">Termux (Android)</h3>
+        <p>Install MailSpoof on Android with a single command in the Termux app:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">curl</span> <span class="v">-sL</span> <span class="s">https://raw.githubusercontent.com/syed-sameer-ul-hassan/MailSpoof/main/install_termux.sh</span> <span class="c">|</span> <span class="k">bash</span></div></div>
+        <p>This installs <code>python</code> and <code>git</code> via pkg, clones the repository, and sets up the CLI globally on your device.</p>
+
+        <h3 id="docker">Docker Deployment</h3>
+        <p>Deploy MailSpoof on any server or cloud VPS without installing dependencies:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">git</span> <span class="v">clone</span> <span class="s">https://github.com/syed-sameer-ul-hassan/MailSpoof.git</span><br>$ <span class="k">cd</span> <span class="s">MailSpoof</span><br>$ <span class="k">docker-compose</span> <span class="v">up</span> <span class="v">-d</span></div></div>
+        <p>The container runs the SMTP server and HTTP Tracking Server concurrently. Audit logs and custom templates are persisted via mounted volumes.</p>
 
         <h3 id="quickstart">Quick Start</h3>
         <p>Run without arguments to start the interactive session:</p>
         <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span><br><span class="c"># Starts SMTP server + interactive spoofing wizard</span></div></div>
 
         <h3 id="commands">Commands</h3>
-        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">server</span>     <span class="c"># Start SMTP server only</span><br>$ <span class="k">mailspoof</span> <span class="v">start</span>      <span class="c"># Start server + interactive session</span><br>$ <span class="k">mailspoof</span> <span class="v">list</span>       <span class="c"># List all templates</span><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span>  <span class="c"># Run scenario by ID</span><br>$ <span class="k">mailspoof</span> <span class="v">custom</span>     <span class="c"># Fully custom spoofing test</span><br>$ <span class="k">mailspoof</span> <span class="v">create</span>     <span class="c"># Create custom template</span><br>$ <span class="k">mailspoof</span> <span class="v">-t</span>         <span class="c"># Alias for create</span><br>$ <span class="k">mailspoof</span> <span class="v">preview</span> <span class="v">1</span>   <span class="c"># Preview a template by ID</span><br>$ <span class="k">mailspoof</span> <span class="v">remove-template</span> <span class="v">1</span> <span class="c"># Remove a custom template</span><br>$ <span class="k">mailspoof</span> <span class="v">edit-template</span> <span class="v">1</span>   <span class="c"># Edit a template in nano</span><br>$ <span class="k">mailspoof</span> <span class="v">profile</span> <span class="v">list</span>   <span class="c"># List saved SMTP profiles</span><br>$ <span class="k">mailspoof</span> <span class="v">logs</span>       <span class="c"># View audit logs</span><br>$ <span class="k">mailspoof</span> <span class="v">report</span>     <span class="c"># Generate assessment report</span><br>$ <span class="k">mailspoof</span> <span class="v">update</span>     <span class="c"># Update from Git repository</span><br>$ <span class="k">mailspoof</span> <span class="v">uninstall</span>  <span class="c"># Remove MailSpoof</span><br>$ <span class="k">mailspoof</span> <span class="v">help</span>       <span class="c"># Show help banner</span></div></div>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">server</span>     <span class="c"># Start SMTP server only</span><br>$ <span class="k">mailspoof</span> <span class="v">start</span>      <span class="c"># Start server + interactive session</span><br>$ <span class="k">mailspoof</span> <span class="v">list</span>       <span class="c"># List all templates</span><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span>  <span class="c"># Run scenario by ID</span><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="v">--target-list</span> <span class="s">targets.csv</span>  <span class="c"># Bulk CSV targeting (v1.2.0)</span><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span> <span class="v">--attach</span> <span class="s">file.pdf</span>  <span class="c"># With attachment (v1.2.0)</span><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span> <span class="v">--reply-to</span> <span class="s">x@evil.com</span>  <span class="c"># Header injection (v1.2.0)</span><br>$ <span class="k">mailspoof</span> <span class="v">custom</span>     <span class="c"># Fully custom spoofing test</span><br>$ <span class="k">mailspoof</span> <span class="v">create</span>     <span class="c"># Create custom template</span><br>$ <span class="k">mailspoof</span> <span class="v">-t</span>         <span class="c"># Alias for create</span><br>$ <span class="k">mailspoof</span> <span class="v">preview</span> <span class="v">1</span>   <span class="c"># Preview a template by ID</span><br>$ <span class="k">mailspoof</span> <span class="v">remove-template</span> <span class="v">1</span> <span class="c"># Remove a custom template</span><br>$ <span class="k">mailspoof</span> <span class="v">edit-template</span> <span class="v">1</span>   <span class="c"># Edit a template in nano</span><br>$ <span class="k">mailspoof</span> <span class="v">profile</span> <span class="v">list</span>   <span class="c"># List saved SMTP profiles</span><br>$ <span class="k">mailspoof</span> <span class="v">logs</span>       <span class="c"># View audit logs</span><br>$ <span class="k">mailspoof</span> <span class="v">report</span>     <span class="c"># Generate assessment report</span><br>$ <span class="k">mailspoof</span> <span class="v">update</span>     <span class="c"># Update from Git repository</span><br>$ <span class="k">mailspoof</span> <span class="v">uninstall</span>  <span class="c"># Remove MailSpoof</span><br>$ <span class="k">mailspoof</span> <span class="v">help</span>       <span class="c"># Show help banner</span></div></div>
 
         <p><strong>Additional flags:</strong> <code>mailspoof help</code> shows the help page, <code>mailspoof -v</code> prints the version.</p>
 
@@ -141,6 +166,21 @@
         <h3 id="uninstall">Uninstall</h3>
         <p>Remove MailSpoof completely:</p>
         <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">uninstall</span></div></div>
+
+        <h3 id="bulk">Bulk CSV Targeting</h3>
+        <p>Send simulations to hundreds of targets at once using a CSV file:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="v">--target-list</span> <span class="s">employees.csv</span> <span class="v">--profile</span> <span class="s">gmail</span><br><span class="c"># CSV format: one email per row, address in first column</span></div></div>
+        <p>The <code>--target-list</code> flag works with both <code>test</code> and <code>custom</code> commands. Each target is logged independently in the audit log.</p>
+
+        <h3 id="attachments">Attachment Payloads</h3>
+        <p>Attach one or more files to test email gateway security against malicious attachments:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">47</span> <span class="s">target@company.com</span> <span class="v">--attach</span> <span class="s">HR_Policy.pdf</span><br>$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">47</span> <span class="s">target@company.com</span> <span class="v">--attach</span> <span class="s">file1.pdf</span> <span class="v">--attach</span> <span class="s">file2.docx</span></div></div>
+
+        <h3 id="headers">Header Injection</h3>
+        <p>Inject custom email headers to simulate specific mail clients or test header-based filtering:</p>
+        <div class="code-block"><div class="code-header">bash</div><div class="code-body">$ <span class="k">mailspoof</span> <span class="v">test</span> <span class="v">1</span> <span class="s">target@company.com</span> \
+  <span class="v">--reply-to</span> <span class="s">attacker@evil.com</span> \
+  <span class="v">--x-mailer</span> <span class="s">"Microsoft Outlook 16.0"</span></div></div>
       </div>
     </div>
   </div>
@@ -148,7 +188,7 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
+      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof" loading="lazy"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
       <div class="footer-col"><h5>Product</h5><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="download.html">Download</a><a href="docs.html">Documentation</a></div>
       <div class="footer-col"><h5>Resources</h5><a href="docs.html#install">Installation</a><a href="docs.html#usage">Usage Guide</a><a href="docs.html#server">SMTP Server</a><a href="docs.html#reporting">Reporting</a></div>
       <div class="footer-col"><h5>Project</h5><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Issues</a><a href="../bug/report/bugreport.html">Report Bug</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a></div>
@@ -184,7 +224,7 @@
     </div>
   </div>
 </div>
-<script src="../logs/main.js"></script>
+<script src="../logs/main.js" defer></script>
 <script>
 (function() {
   document.querySelectorAll('.code-block').forEach(function(block) {

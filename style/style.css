@@ -28,11 +28,10 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  overflow-x: hidden;
-
+  
    &::-webkit-scrollbar {
-    width: 0px;   /* Width of vertical scrollbar */
-    height: 8px;  /* Height of horizontal scrollbar */
+    width: 0px;
+    height: 8px;
   }
 }
 body::before {
@@ -563,7 +562,6 @@ a:hover { color: var(--gray); }
   .cookie-actions .btn, .cookie-actions .btn-reject { width: 100%; justify-content: center; }
 }
 
-html, body { overflow-x: hidden; }
 img, svg { max-width: 100%; height: auto; }
 
 @media (max-width: 1024px) {
@@ -706,16 +704,6 @@ img, svg { max-width: 100%; height: auto; }
 
 
 
-.docs-content{
-  height:100vh;
-  overflow-y:auto;
-   &::-webkit-scrollbar {
-    width: 3px;   /* Width of vertical scrollbar */
-    height: 8px;  /* Height of horizontal scrollbar */
-  }
-  padding:5px;
-  
-}
 
 
 .additional{

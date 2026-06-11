@@ -6,6 +6,13 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src *; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 <title>MailSpoof - Features</title>
+<meta name="description" content="Explore the advanced features of MailSpoof: SMTP connection pooling, realistic templates, open tracking, and CLI management.">
+<meta name="keywords" content="MailSpoof features, phishing templates, email tracking, CLI, SMTP testing">
+<meta name="author" content="Syed Sameer Ul Hassan">
+<meta property="og:title" content="MailSpoof - Features">
+<meta property="og:description" content="Explore the advanced features of MailSpoof: SMTP connection pooling, realistic templates, open tracking, and CLI management.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
@@ -24,6 +31,7 @@
       <a href="templates.html">Templates</a>
       <a href="docs.html">Docs</a>
       <a href="download.html">Download</a>
+      <a href="release.html">Releases</a>
       <a href="../bug/report/bugreport.html">Report Bug</a>
       <a href="support.html">Support</a>
       <a href="donate.html" class="nav-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Donate</a>
@@ -32,7 +40,8 @@
 </nav>
 <style>
 .docs-layout { display:flex; gap:48px; align-items:flex-start; }
-.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; }
+.docs-nav { position:sticky; top:100px; width:260px; flex-shrink:0; max-height:calc(100vh - 130px); overflow-y:auto; scrollbar-width:none; }
+.docs-nav::-webkit-scrollbar { display:none; }
 .docs-content { flex:1; min-width:0; }
 .docs-nav a { display:block; padding:8px 0; color:var(--text-dim); font-size:14px; border-left:2px solid transparent; padding-left:14px; margin-left:-14px; transition:all 0.2s; }
 .docs-nav a:hover, .docs-nav a.active { color:var(--accent); border-left-color:var(--accent); }
@@ -67,6 +76,12 @@
         <a href="#scenarios">Scenarios</a>
         <a href="#profiles">SMTP Profiles</a>
         <a href="#diagnostics">Verbose Diagnostics</a>
+        <h5>v1.2.0 New</h5>
+        <a href="#tracking">HTTP Tracking Server</a>
+        <a href="#bulk">Bulk CSV Targeting</a>
+        <a href="#attachments">Attachment Payloads</a>
+        <a href="#docker">Docker Deployment</a>
+        <a href="#headers">Header Injection</a>
         <h5>Management</h5>
         <a href="#reporting">Reporting</a>
         <a href="#templates">Templates</a>
@@ -100,7 +115,7 @@
         <h3 id="scenarios"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></span>Scenario-Based Testing</h3>
         <p>Run tests by template ID. Each scenario includes metadata like category, severity, and description. Perfect for repeatable penetration test campaigns and compliance assessments.</p>
         <ul>
-          <li>45+ built-in attack scenario templates</li>
+          <li>62 built-in attack scenario templates</li>
           <li>Severity classification (Critical, High, Medium)</li>
           <li>Category and tag-based filtering</li>
           <li>Repeatable campaigns with consistent parameters</li>
@@ -173,6 +188,51 @@
 
         <h3 id="update"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>Auto-Update</h3>
         <p>Built-in update command pulls the latest version from Git and re-runs the installer. Stay current with security fixes and new templates effortlessly.</p>
+
+        <h3 id="tracking"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></span>HTTP Tracking Server <span style="font-size:12px;background:rgba(160,31,31,0.15);color:var(--accent-glow);border:1px solid rgba(160,31,31,0.3);padding:3px 10px;border-radius:20px;font-weight:600;margin-left:8px;">New in v1.2.0</span></h3>
+        <p>MailSpoof runs a concurrent multi-threaded HTTP Tracking Server on port 8080 alongside the SMTP server. Track who opened your simulated phishing emails in real-time.</p>
+        <ul>
+          <li>Automatic 1x1 tracking pixel injection into HTML templates</li>
+          <li>Real-time open event logging to <code>~/.mailspoof/tracking.log</code></li>
+          <li>View live hits directly in your terminal console</li>
+          <li>Click tracking support for link engagement analysis</li>
+        </ul>
+
+        <h3 id="bulk"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></span>Bulk CSV Targeting <span style="font-size:12px;background:rgba(160,31,31,0.15);color:var(--accent-glow);border:1px solid rgba(160,31,31,0.3);padding:3px 10px;border-radius:20px;font-weight:600;margin-left:8px;">New in v1.2.0</span></h3>
+        <p>Pass a CSV file of target email addresses to send simulations to an entire department or organization with a single command. No scripting required.</p>
+        <ul>
+          <li><code>mailspoof test 1 --target-list employees.csv --profile gmail</code></li>
+          <li>Accepts any CSV with email addresses in the first column</li>
+          <li>Each target gets its own delivery attempt with independent logging</li>
+          <li>Works with both <code>test</code> and <code>custom</code> commands</li>
+        </ul>
+
+        <h3 id="attachments"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg></span>Attachment Payloads <span style="font-size:12px;background:rgba(160,31,31,0.15);color:var(--accent-glow);border:1px solid rgba(160,31,31,0.3);padding:3px 10px;border-radius:20px;font-weight:600;margin-left:8px;">New in v1.2.0</span></h3>
+        <p>Attach real files to your simulated phishing emails to test corporate email gateways, spam filters, and endpoint security against malicious attachment scenarios.</p>
+        <ul>
+          <li><code>mailspoof test 47 target@company.com --attach HR_Policy.pdf --attach Invoice.docx</code></li>
+          <li>Attach multiple files using repeated <code>--attach</code> flags</li>
+          <li>Tests how security appliances handle PDF, DOCX, ZIP, and other file types</li>
+          <li>Works with both <code>test</code> and <code>custom</code> commands</li>
+        </ul>
+
+        <h3 id="docker"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 01-2 2v4a2 2 0 012 2h14a2 2 0 012-2v-4a2 2 0 01-2-2m-2-4h.01M17 16h.01"/></svg></span>Docker Deployment <span style="font-size:12px;background:rgba(160,31,31,0.15);color:var(--accent-glow);border:1px solid rgba(160,31,31,0.3);padding:3px 10px;border-radius:20px;font-weight:600;margin-left:8px;">New in v1.2.0</span></h3>
+        <p>Deploy MailSpoof instantly on any cloud VPS or server with the included <code>Dockerfile</code> and <code>docker-compose.yml</code>. No dependency installation required.</p>
+        <ul>
+          <li>Single command deployment: <code>docker-compose up -d</code></li>
+          <li>SMTP server and HTTP Tracking Server both containerized</li>
+          <li>Volumes bound to persist audit logs and custom templates across restarts</li>
+          <li>Ideal for red team infrastructure and remote assessments</li>
+        </ul>
+
+        <h3 id="headers"><span class="feat-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>Advanced Header Injection <span style="font-size:12px;background:rgba(160,31,31,0.15);color:var(--accent-glow);border:1px solid rgba(160,31,31,0.3);padding:3px 10px;border-radius:20px;font-weight:600;margin-left:8px;">New in v1.2.0</span></h3>
+        <p>Inject custom email headers for advanced spoofing scenarios. Control the Reply-To address and X-Mailer header to simulate specific email clients or bypass header-based filters.</p>
+        <ul>
+          <li><code>--reply-to attacker@evil.com</code> — override the reply destination</li>
+          <li><code>--x-mailer "Microsoft Outlook 16.0"</code> — spoof the sending client</li>
+          <li>Works with both <code>test</code> and <code>custom</code> commands</li>
+          <li>All injected headers are sanitized to prevent CRLF injection</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -194,7 +254,7 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
+      <div class="footer-brand-area"><img src="../assets/logo.svg" alt="MailSpoof" loading="lazy"><p class="footer-desc">Professional Email Security Assessment Framework for authorized penetration testing.</p></div>
       <div class="footer-col"><h5>Product</h5><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="download.html">Download</a><a href="docs.html">Documentation</a></div>
       <div class="footer-col"><h5>Resources</h5><a href="docs.html#install">Installation</a><a href="docs.html#usage">Usage Guide</a><a href="docs.html#server">SMTP Server</a><a href="docs.html#reporting">Reporting</a></div>
       <div class="footer-col"><h5>Project</h5><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/issues" target="_blank" rel="noopener noreferrer">Issues</a><a href="../bug/report/bugreport.html">Report Bug</a><a href="https://github.com/syed-sameer-ul-hassan/MailSpoof/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a></div>
@@ -231,6 +291,6 @@
     </div>
   </div>
 </div>
-<script src="../logs/main.js"></script>
+<script src="../logs/main.js" defer></script>
 </body>
 </html>
