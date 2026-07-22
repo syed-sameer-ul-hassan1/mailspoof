@@ -1,0 +1,15 @@
+# MailSpoof - robots.txt
+# Allow all crawlers to access the site
+User-agent: *
+Allow: /
+
+# Disallow specific paths if needed
+Disallow: /bug/report/
+Disallow: /logs/
+Disallow: /assets/
+
+# Sitemap location
+Sitemap: https://mailspoof.orildo.sbs/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+Crawl-delay: 1

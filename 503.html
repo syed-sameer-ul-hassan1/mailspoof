@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>503 - Service Unavailable | MailSpoof | Orildo</title>
+<meta name="description" content="503 - Service temporarily unavailable on MailSpoof by Orildo. We're performing maintenance. Please check back soon.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://mailspoof.orildo.sbs/503.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --text: #e5e5e5;
+  --text-dim: #888;
+  --accent: #A01F1F;
+  --accent-hover: #c02a2a;
+  --border: #222;
+  --font: 'K2D', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.error-container {
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+  animation: fadeIn 0.6s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.error-code {
+  font-size: 120px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 20px;
+  animation: rotate 3s linear infinite;
+}
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.error-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.error-message {
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.error-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.error-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.error-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--accent);
+}
+.maintenance-info {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(160, 31, 31, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: progress 30s linear;
+}
+@keyframes progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="error-container">
+  <div class="error-icon">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.24 16L12 15.76 7.76 18 8.5 13.23 5 9.74l4.77-.69L12 4.5l2.23 4.55L19 9.74l-3.5 3.49.74 4.77z"/></svg>
+  </div>
+  <div class="error-code" id="errorCode">503</div>
+  <h1 class="error-title">Service Unavailable</h1>
+  <p class="error-message">We're performing scheduled maintenance to improve your experience. We'll be back shortly.</p>
+  <div class="error-actions">
+    <button onclick="refreshPage()" class="btn btn-primary">Refresh Page</button>
+    <a href="View/home.html" class="btn btn-secondary">Go Home</a>
+  </div>
+  <div class="maintenance-info">
+    <p>Estimated time remaining: <span class="retry-count" id="timeRemaining">30</span> seconds</p>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<script src="logs/security.js"></script>
+<script>
+let timeRemaining = 30;
+const timeRemainingEl = document.getElementById('timeRemaining');
+
+// Countdown for maintenance
+const countdownInterval = setInterval(() => {
+  timeRemaining--;
+  timeRemainingEl.textContent = timeRemaining;
+  if (timeRemaining <= 0) {
+    clearInterval(countdownInterval);
+    refreshPage();
+  }
+}, 1000);
+
+// Refresh function
+function refreshPage() {
+  clearInterval(countdownInterval);
+  window.location.reload();
+}
+
+// Auto-refresh every 30 seconds
+setInterval(() => {
+  window.location.reload();
+}, 30000);
+
+// Track 503 errors (optional - can be connected to analytics)
+console.log('503 Error - Service unavailable:', window.location.href);
+</script>
+</body>
+</html>

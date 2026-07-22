@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>404 - Page Not Found | MailSpoof | Orildo</title>
+<meta name="description" content="404 - Page not found on MailSpoof by Orildo. The page you're looking for doesn't exist or has been moved.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://mailspoof.orildo.sbs/404.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --text: #e5e5e5;
+  --text-dim: #888;
+  --accent: #A01F1F;
+  --accent-hover: #c02a2a;
+  --border: #222;
+  --font: 'K2D', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.error-container {
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+  animation: fadeIn 0.6s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.error-code {
+  font-size: 120px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 20px;
+  animation: glitch 2s infinite;
+}
+@keyframes glitch {
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(-5px, 5px); }
+  94% { transform: translate(5px, -5px); }
+  96% { transform: translate(-5px, -5px); }
+  98% { transform: translate(5px, 5px); }
+}
+.error-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.error-message {
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.error-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.error-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.error-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--accent);
+}
+</style>
+</head>
+<body>
+<div class="error-container">
+  <div class="error-icon">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+  </div>
+  <div class="error-code" id="errorCode">404</div>
+  <h1 class="error-title">Page Not Found</h1>
+  <p class="error-message">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+  <div class="error-actions">
+    <a href="View/home.html" class="btn btn-primary">Go Home</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Go Back</a>
+  </div>
+</div>
+
+<script src="logs/security.js"></script>
+<script>
+// Auto-redirect after 15 seconds
+let countdown = 15;
+const countdownInterval = setInterval(() => {
+  countdown--;
+  if (countdown <= 0) {
+    clearInterval(countdownInterval);
+    window.location.href = 'View/home.html';
+  }
+}, 1000);
+
+// Glitch effect on hover
+const errorCode = document.getElementById('errorCode');
+errorCode.addEventListener('mouseenter', () => {
+  errorCode.style.animation = 'none';
+  errorCode.offsetHeight;
+  errorCode.style.animation = 'glitch 0.5s infinite';
+});
+errorCode.addEventListener('mouseleave', () => {
+  errorCode.style.animation = 'glitch 2s infinite';
+});
+
+// Track 404 errors (optional - can be connected to analytics)
+console.log('404 Error - Page not found:', window.location.href);
+</script>
+</body>
+</html>
